@@ -1,0 +1,154 @@
+<div class = "page-header">
+    <center><h1><font color = '#E5A823'>Update your personal information</font></h1></center>
+</div>
+    
+<%= form_for(@user) do |f| %>
+    <center>
+        <div class = "form-group">
+        	<div class="col-xs-6">
+                <b><font color = '#0055A2'>First Name</font></b><br \>
+                <%= f.text_field :firstName, class: "form-control"%>
+        	</div>
+        </div> 
+
+        <div class = "form-group">
+        	<div class="col-xs-6">
+                <b><font color = '#0055A2'>Last Name</font></b><br \>
+                <%= f.text_field :lastName, class: "form-control"%>
+        	</div>
+        </div>
+
+    	<br \>
+    	<br \>
+        <br \>
+        <br \>
+
+    	<div class = "form-group">
+        	<div class="col-xs-12">
+                <b><font color = '#0055A2'>About Me</font></b><br \>
+                <%= f.text_area :text, class: "form-control"%>
+        	</div>
+        </div>  
+    	<br \>
+    	<br \>
+    	<br \>
+    	<br \>
+
+        <div class = "form-group">
+            <div class="col-xs-12">
+                <b><font color = '#0055A2'>Profile Picture</font></b><br \>
+                <%= f.file_field :avatar,accept: 'image/jpeg,image/gif,image/png'%>
+            </div>
+            <%=f.error_span(:avatar) %>
+        </div> 
+
+        <br \>
+        <br \>
+        <br \>
+        <br \>
+ 
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Year In School</font></b><br \>
+            <%= f.select :year, ['1', '2', '3', '4', '5', '6+']%>
+        </div><br \>
+      
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Expected Graduation</font></b><br \>
+            <%= f.select :gradSeason, ['Spring', 'Summer', 'Fall', 'Winter'] %>
+            <%= f.select :gradYear, [DateTime.now.year, DateTime.now.year+1, DateTime.now.year+2, DateTime.now.year+3, DateTime.now.year+4, DateTime.now.year+5, DateTime.now.year+6, (DateTime.now.year+7).to_s << "+"] %>
+        </div><br \>   
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Date of Birth</font></b><br \>
+            <%= f.date_select :birthdate, :order => [:month, :day, :year], :start_year => DateTime.now.year - 30, :end_year => DateTime.now.year-16 %>
+    	</div><br \>
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Sex</font></b><br \>
+            <%= f.radio_button :gender, 'Female'%> Female
+            <%= f.radio_button :gender, 'Male'%> Male
+            <%= f.radio_button :gender, 'Other' %> Other
+        </div><br \>	
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Currently Have a Place?</font></b><br \>
+            <%= f.radio_button :hasPlace, 'true'%> Yes
+            <%= f.radio_button :hasPlace, 'false'%> No
+        </div><br \>
+
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Share room?</font></b><br \>
+            <%= f.radio_button :shared, 'true'%> Yes
+            <%= f.radio_button :shared, 'false'%> No
+        </div><br \>	
+
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Maximum Monthly Expense for Rent & Utilities</font></b><br \>
+            <%= f.select :budget, ['300', '400', '500', '600', '700', '800', '900', 'More']%>
+        </div><br \>
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>How outgoing are you?</font></b><br \>
+            <%= f.radio_button :outgoing, '1'%> Introvert.<br \>
+            <%= f.radio_button :outgoing, '2'%> Awkward at first.<br \>
+            <%= f.radio_button :outgoing, '3'%> I'm friendly.<br \>
+            <%= f.radio_button :outgoing, '4'%> Many close friends.<br \>
+            <%= f.radio_button :outgoing, '5'%> Loved by all.<br \>
+        </div><br \>
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>How often do you party?</font></b><br \>
+            <%= f.radio_button :party, '1'%> Not my thing.<br \>
+            <%= f.radio_button :party, '2'%> Hardly do.<br \>
+            <%= f.radio_button :party, '3'%> Sometimes.<br \>
+            <%= f.radio_button :party, '4'%> Frequently.<br \>
+            <%= f.radio_button :party, '5'%> I'm crazy!<br \>
+        </div><br \>
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>How often do you drink?</font></b><br \>
+            <%= f.radio_button :drink, '1'%> Ew.<br \>
+            <%= f.radio_button :drink, '2'%> A sip or two.<br \>
+            <%= f.radio_button :drink, '3'%> Once in awhile.<br \>
+            <%= f.radio_button :drink, '4'%> Whenever I can.<br \>
+            <%= f.radio_button :drink, '5'%> Am I ever sober?<br \>
+        </div><br \>
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>How often do you clean?</font></b><br \>
+            <p align = "center-left">
+            <%= f.radio_button :cleanliness, '1'%> Never.<br \>
+            <%= f.radio_button :cleanliness, '2'%> Rarely.<br \>
+            <%= f.radio_button :cleanliness, '3'%> Sometimes.<br \>
+            <%= f.radio_button :cleanliness, '4'%> Frequently.<br \>
+            <%= f.radio_button :cleanliness, '5'%> Always.<br \>
+        </div><br \>
+
+        <div class = "form-group">
+            <b><font color = '#0055A2'>How organized are you?</font></b><br \>
+            <%= f.radio_button :organization, '1'%> I am a pig in human form.<br \>
+            <%= f.radio_button :organization, '2'%> I don't really care.<br \>
+            <%= f.radio_button :organization, '3'%> Messy at times.<br \>
+            <%= f.radio_button :organization, '4'%> I take care of my own.<br \>
+            <%= f.radio_button :organization, '5'%> I can't stand messy rooms.<br \>
+        </div><br \>
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Do you take drugs?</font></b><br \>
+            <%= f.radio_button :drugs, 'true'%> Yes
+            <%= f.radio_button :drugs, 'false'%> No
+        </div><br \>
+        
+        <div class = "form-group">
+            <b><font color = '#0055A2'>Do you smoke?</font></b><br \>
+            <%= f.radio_button :smoking, 'true'%> Yes
+            <%= f.radio_button :smoking, 'false'%> No
+        </div>
+        <br \>
+        <%= submit_tag "Update Information", class: "btn btn-primary" %>
+        <br \>
+        <br \>
+        <br \>
+    </center>
+<% end %>
+

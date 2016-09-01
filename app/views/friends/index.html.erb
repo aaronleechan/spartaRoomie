@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+
+                background-image: url('/assets/selingsjsu.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                background-color: white;
+
+            }
+
+            h1 {
+                color: #000000;
+                text-align: center;
+                text-indent: 100px
+                text-transform: lowercase;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th {
+                font-size: 15pt;
+                text-align: center;
+                padding: 12px;
+            }
+
+            td {
+                text-align: center;
+                padding: 8px;
+            }
+
+            tr:nth-child(odd){background-color: #f2f2f2}
+            tr:nth-child(even){background-color: #ffff99}
+
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <h1>My SpartaRoomies</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>School</th>
+                    <th>Year</th>
+                    <th>Expected Graduation</th>
+                    <th>Gender</th>
+                </tr>
+
+                <% if @myfriends != [] %>
+                    <% @myfriends.each do |user| %>
+                        <tr>
+                            <% name = user.firstName << " "  << user.lastName %>
+                            <td><%= link_to name, user_path(user) %></td>
+                            <td><%= user.school %></td>
+                            <td><%= user.year %></td>
+                            <td><%= user.gradSeason %> <%= user.gradYear %></td>
+                            <td><%= user.gender %></td>
+                        </tr>
+                   <% end %>
+                <% end %>   
+            </table>
+        </center>
+    </body>
+</html>

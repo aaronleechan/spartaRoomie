@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title><%= content_for?(:title) ? yield(:title) : "SpartaRoomie" %></title>
+      <%= csrf_meta_tags %>
+
+      <%= stylesheet_link_tag "application", :media => "all" %>
+
+      <!-- For third-generation iPad with high-resolution Retina display: -->
+      <!-- Size should be 144 x 144 pixels -->
+      <%= favicon_link_tag 'as.png' %>
+
+      <%= javascript_include_tag "application" %>
+
+      <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+      <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+      <![endif]-->
+
+      <style>
+      .navbar {
+          padding-top: 15px;
+          padding-bottom: 15px;
+          border: 0;
+          border-radius: 0;
+          margin-bottom: 0;
+          font-size: 12px;
+          letter-spacing: 5px;
+      }
+      
+      .navbar-nav  li a:hover {
+          color: #E5A823 !important;
+      }s
+      </style>
+    </head>
+
+    <body>
+    <%#=render 'layouts/nav_bar' %>
+      <div class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+              <ul class="nav navbar-nav">
+                <li><%= link_to 'SpartaRoomie', root_path %></li>
+                <li><%= link_to 'All Current Members',users_path%></li>
+
+              </ul>
+            </div>
+          </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <%= bootstrap_flash %>
+            <%= yield %>
+          </div>
+          <div class="col-lg-3">
+            <% if current_user %>
+              <ul class="nav nav-list">
+                <h1><li><%= link_to current_user.firstName << " " << current_user.lastName, user_path(current_user) %></li></h1>
+
+                <% if current_user.hasPlace %>
+                  <li><%= link_to "Add Images to Slideshow", new_image_path %></li>
+                <% end %>
+                <li><%= link_to 'Find My SpartaRoomie', search_path %></li>
+
+                <% if current_user.pending_friends.empty? %>
+                  <li><%= link_to "SpartaRoomie Requests", pending_path %></li>
+                <% else %>
+                  <li><%= link_to "SpartaRoomie Requests (" << current_user.pending_friends.count.to_s << ")", pending_path %></li>     
+                <% end %>
+
+                <li><%= link_to "My SpartaRoomies", friends_path %></li>
+
+                <li><%= link_to 'Update Personal Setting', update_path %></li>
+                
+                <li><%= link_to 'Log Out', logout_path %></li>
+              </ul>   
+            <% end %>  
+          </div>
+        </div>
+
+      </div> <!-- /container -->
+    </div>
+    </body>
+
+    <!--
+    <footer>
+        <p>&copy; SpartaRoomie 2016</p>
+    </footer>
+    -->  
+</html>

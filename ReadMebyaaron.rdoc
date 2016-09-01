@@ -1,0 +1,13 @@
+I will write all the settings i changed for this projects
+
+................>XX<................................................................
+after "bundle instll " has error the same as below (MAC AND LINUX USER)
+
+An error occurred while installing pg (0.18.4), and Bundler cannot continue.
+Make sure that `gem install pg -v '0.18.4'` succeeds before bundling.
+
+......................................>>>XX<<<......................................
+
+sudo apt-get update
+sudo apt-get install gdebi
+

@@ -1,0 +1,16 @@
+<div class = "page-header">
+    <center><h1>Edit About Me</h1></center>
+</div>
+    
+<%= form_for(@user) do |f| %>
+    <center>
+    
+    <div class = "form-group">
+        <%= f.label "About Me" %>
+        <%= f.text_field :@aboutMe %>
+    </div><br \>
+    <br \>
+    <%= submit_tag "Update Profile", class: "btn btn-primary" %>
+    <br \>
+    
+<% end %>

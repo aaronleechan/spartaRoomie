@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  firstName: MyString
+  lastName: MyString
+  email: MyString
+  school: MyString
+  year: 
+  gradYear: 
+  gender: MyString
+  birthdate: 
+  shared: false
+  budget: 
+  organization: 
+  cleanliness: 
+  party: 
+  drink: 
+  drugs: 
+  smoking: false
+  outgong: 
+
+two:
+  firstName: MyString
+  lastName: MyString
+  email: MyString
+  school: MyString
+  year: 
+  gradYear: 
+  gender: MyString
+  birthdate: 
+  shared: false
+  budget: 
+  organization: 
+  cleanliness: 
+  party: 
+  drink: 
+  drugs: 
+  smoking: false
+  outgong: 

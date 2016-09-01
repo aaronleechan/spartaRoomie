@@ -1,0 +1,4 @@
+<h1>Slideshow</h1>
+<% @images.each do |image| %>
+  <%= image_tag(image.picture.url, size: "650x500") %>
+<% end %>

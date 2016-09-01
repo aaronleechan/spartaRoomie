@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	  <!-- Theme Made By www.w3schools.com - No Copyright -->
+		<title>Bootstrap Theme Simply Me</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<style>
+			body {
+			    font: 20px Montserrat, sans-serif;
+			    line-height: 1.8;
+			    color: #;
+			}
+
+			p {font-size: 16px;}
+
+			.margin {margin-bottom: 45px;}
+
+			.bg-1 { 
+			    background-color: #E5A823; /* Green */
+			    color: #0055A2;
+			}
+			
+			.bg-2 { 
+		    	background-color: #474e5d; /* Dark Blue */
+			    color: #ffffff;
+			}
+			
+			.bg-3 { 
+			    background-color: #ffffff; /* White */
+			    color: #555555;
+			}
+			
+			.bg-4 { 
+			    background-color: #2f2f2f; /* Black Gray */
+			    color: #fff;
+			}
+			
+			.container-fluid {
+			    padding-top: 70px;
+			    padding-bottom: 70px;
+			}
+			
+			.navbar {
+			    padding-top: 15px;
+			    padding-bottom: 15px;
+			    border: 0;
+			    border-radius: 0;
+			    margin-bottom: 0;
+			    font-size: 12px;
+			    letter-spacing: 5px;
+			}
+			
+			.navbar-nav  li a:hover {
+			    color: #E5A823 !important;
+			}
+	  	</style>
+	</head>
+
+	<body>
+		<!-- First Container -->
+		<div class="container-fluid bg-1 text-center">
+		 	<%= image_tag @user.avatar.url%>
+		  	<h3><%= @user.firstName %> <%= @user.lastName %></h3>
+		  	<h5><%= @user.text %></h5>
+			<% if(@user != current_user) %>
+
+				<%if @friendship == nil %>
+					<%= button_to "Add to SpartaRoomies", add_friend_path(friend_id: @user.id), :method => :post, class: "btn btn-default" %>
+				<% elsif(@friendship.status == "accepted") %>
+					<%= button_to "Delete SpartaRoomie", delete_friend_path(friend_id: @user.id), :method => :delete, class: "btn btn-default" %>
+				<% elsif(@friendship.status == "requested") %>
+					<%= button_to "Undo SpartaRoomie Request", delete_friend_path(friend_id: @user.id), :method => :delete, class: "btn btn-default" %>
+				<% elsif(@friendship.status == "pending") %>
+					<%= button_to "Accept Request", accept_friend_path(friend_id: @user.id), :method => :put, class: "btn btn-default" %>
+				<% end %>
+			<% end %>
+		</div>
+
+		<!-- Second Container -->
+		<div class="container-fluid bg-3 text-center">
+		  	<table class="table">
+		    	<tbody>
+
+		<!--WHY NOT SAVE???????????????????????????????????? -->
+					<tr>
+						<td><h5>Sex:</h5></td>
+						<td><h5><%= @user.gender %></h5></td>
+					</tr>
+
+					<tr>
+						<td><h5>Year In School:</h5></td>
+						<td><h5><%= @user.year %></h5></td>
+					</tr>
+
+					<tr>
+						<td><h5>Expected Graduation:</h5></td>
+						<% if @user.gradSeason && @user.gradYear%>
+							<td><h5><%= @user.gradSeason << " " << @user.gradYear.to_s %></h5></td>
+						<% else %>
+							<td></td>
+						<% end %>
+					</tr>
+
+					<tr >
+						<td><h5>Date of Birth:</h5></td>
+						<td><h5><%= @user.birthdate %></h5></td>
+					</tr>
+
+					<tr >
+						<td><h5>Currently have a place? </h5></td>
+						<% if @user.hasPlace %>
+							<td><h5>Yes</h5></td>
+						<% else %>
+							<td><h5>No</h5></td>
+						<% end %>
+					</tr>
+
+					<tr>
+						<td><h5>Willing to share?</h5></td>
+						<% if @user.shared %>
+							<td><h5>Yes</h5></td>
+						<% else %>
+							<td><h5>No</h5></td>
+						<% end %>
+					</tr>
+
+					<tr>
+						<td><h5>Personal Budget:</h5></td>
+						<% if @user.budget %>
+							<td><h5><= $<%= @user.budget %></h5></td>
+						<% else %>
+							<td></td>
+						<% end %>
+					</tr>
+
+					<tr>
+						<td><h5>Level of Organization</h5></td>
+						<td><h5><%= @user.organization %></h5></td>
+					</tr>
+
+					<tr>
+						<td><h5>Level of Cleanliness:</h5></td>
+						<td><h5><%= @user.cleanliness %></h5></td>
+					</tr>
+
+					<tr>
+						<td><h5>Level of Friendliness</h5></td>
+						<td><h5><%= @user.outgoing %></h5></td>
+					</tr>
+
+					<tr>
+						<td><h5>Partygoing Level</h5></td>
+						<td><h5><%= @user.party %></h5></td>
+					</tr>
+
+					<tr>
+						<td><h5>Drinking Level</h5></td>
+						<td><h5><%= @user.drink %></h5></td>
+					</tr>
+
+					<tr>
+						<td><h5>Take drugs?</h5></td>
+						<% if @user.drugs %>
+							<td><h5>Yes</h5></td>
+						<% else %>
+							<td><h5>No</h5></td>
+						<% end %>
+					</tr>
+
+					<tr>
+						<td><h5>Smokes?</h5></td>
+						<% if @user.smoking %>
+							<td><h5>Yes</h5></td>
+						<% else %>
+							<td><h5>No</h5></td>
+						<% end %>
+					</tr>
+		   		</tbody>
+		 	</table>
+		</div>
+		
+		<% if !@images.empty? && @user.hasPlace %>
+		<center>
+		<h1>Slideshow</h1>
+		<% @images.each do |image| %>
+  			<%= image_tag(image.picture.url, size: "650x500") %><br \>
+  			<% if image.user == current_user %>
+    			<%= link_to t('.edit', :default => t("helpers.links.edit")), edit_image_path(image), :class => 'btn btn-default' %>
+    			<%= link_to t('.destroy', :default => t("helpers.links.destroy")), image_path(image),
+              		:method => 'delete',
+              		:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              		:class => 'btn btn-danger' %>
+              	<br \>
+  			<% end %>
+		<% end %>
+		</center>
+		<% end %>
+
+		<br \>
+	<!-- Third Container (Grid) -->
+	<!--<div class="container-fluid bg-3 text-center">    
+	  <h5 class="margin">Where To Find Me?</h5><br>
+	  <div class="row">
+	    <div class="col-sm-4">
+	      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	      <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-4"> 
+	      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	      <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-4"> 
+	      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	      <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+	    </div>
+	  </div>
+	</div>-->
+
+	<!-- Footer -->
+	<!--<footer class="container-fluid bg-4 text-center">
+	  <p>Bootstrap Theme Made By <a href="http://www.w3schools.com">www.w3schools.com</a></p> 
+	</footer>-->
+
+	</body>
+</html>

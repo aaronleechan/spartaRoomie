@@ -1,0 +1,9 @@
+Hi <%= @name %>,
+
+<p>Thank you for creating a SpartaRoomie account!</p>
+<p>To start your SpartaRoomie search, please verify your email address by clicking the link below:</p>
+
+<%= confirm_email_user_url(@user.confirm_token) %>
+
+<p>Thanks,</p>
+<p>The SpartaRoomie Team</p>
